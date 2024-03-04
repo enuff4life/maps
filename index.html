@@ -185,9 +185,9 @@
         console.log('clicked row...' + row.name);
         $( ".badge" ).each( function ()
         {
-            let textIndex = $( this ).text();
-            if(textIndex == index){
-                $( this ).trigger("click");
+            let textIndex = $(this).text();
+            if(textIndex == (index+1)){
+                $(this).trigger("click"); //todo: not functioning...
                 // $( this ).removeClass('text-bg-secondary');
                 // $( this ).addClass('text-bg-primary');
             }
