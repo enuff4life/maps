@@ -99,6 +99,9 @@
         // functions
         function getClickHandler(marker, infoWindow, index, lat, long) {
             return function(e) {
+                if(index == null)
+                    return;
+
                 if (infoWindow.getMap()) {
                     console.log('closed marker...' + index);
                     // todo: remove row highlight
