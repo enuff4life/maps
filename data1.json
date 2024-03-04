@@ -1,25 +1,59 @@
 [
     {
-        "num": 1,
-        "name": "",
-        "price": "",
-        "cat": "",
-        "land": "",
-        "usage": "",
-        "add": "",
-        "link": "",
-        "note": ""
+      "num": 1,
+      "name": "공장4층",
+      "price": "38억",
+      "cat": "공장,창고",
+      "floors": null,
+      "area1": 250,
+      "area2": 464,
+      "usage": null,
+      "parking": 6,
+      "add": "37.5220437,126.7081759",
+      "Hi": null,
+      "link": "https://new.land.naver.com/offices?ms=37.5220437,126.7081759,19&a=GJCG&b=A1&e=RETAIL&ad=true&articleNo=2407946341",
+      "note": "-"
     },
     {
-        "num": 2,
-        "name": "",
-        "price": "",
-        "cat": "",
-        "land": "",
-        "usage": "",
-        "add": "",
-        "link": "",
-        "note": ""
+      "num": 2,
+      "name": 2408913409,
+      "price": "71.5억",
+      "cat": "공장 창고",
+      "floors": "3/B1층",
+      "area1": 549,
+      "area2": 861,
+      "usage": "준공업지역",
+      "parking": 20,
+      "add": "37.5227374, 126.6986008",
+      "Hi": null,
+      "link": "https://new.land.naver.com/offices?ms=37.52245,126.6983161,19&a=GJCG&e=RETAIL&articleNo=2408913409"
+    },
+    {
+      "num": 3,
+      "name": null,
+      "price": null,
+      "cat": null,
+      "floors": null,
+      "area1": null,
+      "area2": null,
+      "usage": null,
+      "parking": null,
+      "add": null,
+      "Hi": null,
+      "link": null
+    },
+    {
+      "num": 4,
+      "name": null,
+      "price": null,
+      "cat": null,
+      "floors": null,
+      "area1": null,
+      "area2": null,
+      "usage": null,
+      "parking": null,
+      "add": null,
+      "Hi": null,
+      "link": null
     }
-
-]
+  ]
