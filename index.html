@@ -41,7 +41,7 @@
                       <th scope="col" data-field="usage">용도</th>
                       <th scope="col" data-field="parking">주차</th>
                       <th scope="col" data-field="add">주소</th>
-                      <th scope="col" data-field="link">링크</th>
+                      <!-- <th scope="col" data-field="link">링크</th> -->
                       <th scope="col" data-field="note">비고</th>
                     </tr>
                   </thead>
@@ -69,29 +69,10 @@
     
         var map = new naver.maps.Map('map', mapOptions);
     
-       
-    
         window.navermap_authFailure = function () {
             //alert("failed to authenticate");
         }
-    
-        // zoom
-        var contentEl = $('<div class="iw_inner" style="width:350px;position:absolute;top:0;right:0;z-index:1000;background-color:#fff;border:solid 1px #333;">'
-            + '<h3>Map States</h3>'
-            + '<p style="font-size:14px;">zoom : <em class="zoom">'+ map.getZoom() +'</em></p>'
-            + '<p style="font-size:14px;">centerPoint : <em class="center">'+ map.getCenterPoint() +'</em></p>'
-            + '</div>');
-    
-        contentEl.appendTo(map.getElement());
-    
-        naver.maps.Event.addListener(map, 'zoom_changed', function(zoom) {
-            contentEl.find('.zoom').text(zoom);
-        });
-    
-        naver.maps.Event.addListener(map, 'bounds_changed', function(bounds) {
-            contentEl.find('.center').text(map.getCenterPoint());
-            console.log('Center: ' + map.getCenter().toString() + ', Bounds: ' + bounds.toString());
-        });
+       
     </script>
     <script>
         $(function(){
@@ -99,13 +80,15 @@
             $.getJSON( "data1.json", function( data ) {
                 var items = [];
                 $.each(data, function( key, row ) {
+                    
+
                     if(row.add != null){
                         let lat = row.add.split(',')[0];
                         let long = row.add.split(',')[1];
 
-                        makeMarker(lat, long);
+                        makeMarker(lat, long, row.num);
 
-                        items.push( "<li id='" + key + "'>" + row.name + " | " + lat  + ", "+ long+ "</li>" );
+                        items.push( "<li id='" + key + "'>" + row.name + " | " + lat  + ", "+ long+ "<span class='badge text-bg-secondary'>4</span>"+"</li>" );
 
                     }
                 });
@@ -121,10 +104,32 @@
 
             // ##############
             // functions
-            function makeMarker(lat, long){
+            function makeMarker(lat, long, index, map){
+                // var icon = {
+                //     url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sp_pins_spot_v3.png',
+                //     size: new naver.maps.Size(24, 37),
+                //     anchor: new naver.maps.Point(12, 37),
+                //     origin: new naver.maps.Point(i * 29, 0)
+                // };
+
                 var marker = new naver.maps.Marker({
                     position: new naver.maps.LatLng(lat, long),
-                    map: map
+                    map: map,
+                    icon: {
+                    content: [
+                        '<span class="badge text-bg-secondary">'+index+'</span>',
+                                '<div class="cs_mapbridge">',
+                                    '<div class="map_group _map_group crs">',
+                                        '<div class="map_marker _marker num1 num1_big"> ',
+                                            '<span class="ico _icon"></span>',
+                                            '<span class="shd"></span>',
+                                        '</div>',
+                                    '</div>',
+                                '</div>'
+                            ].join(''),
+                    size: new naver.maps.Size(38, 58),
+                    anchor: new naver.maps.Point(19, 58),
+                },
                 });
             };
 
