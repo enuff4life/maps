@@ -183,10 +183,9 @@
 
     function detailFormatter(index, row) {
         console.log('clicked row...' + row.name);
-        $( ".badge" ).filter( function ()
+        $( ".badge" ).each( function ()
         {
             let textIndex = $( this ).text();
-
             if(textIndex == index){
                 $( this ).trigger("click");
                 // $( this ).removeClass('text-bg-secondary');
