@@ -103,7 +103,7 @@
 
         // ##############
         // functions
-        function makeMarker(lat, long, index, map){
+        function makeMarker(lat, long, index){
             // var icon = {
             //     url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sp_pins_spot_v3.png',
             //     size: new naver.maps.Size(24, 37),
@@ -117,14 +117,6 @@
                 icon: {
                 content: [
                     '<span class="badge text-bg-secondary">'+index+'</span>',
-                            '<div class="cs_mapbridge">',
-                                '<div class="map_group _map_group crs">',
-                                    '<div class="map_marker _marker num1 num1_big"> ',
-                                        '<span class="ico _icon"></span>',
-                                        '<span class="shd"></span>',
-                                    '</div>',
-                                '</div>',
-                            '</div>'
                         ].join(''),
                 size: new naver.maps.Size(38, 58),
                 anchor: new naver.maps.Point(19, 58),
