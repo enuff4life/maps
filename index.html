@@ -88,7 +88,7 @@
                 if(row.add != null){
                     let lat = row.add.split(',')[0];
                     let long = row.add.split(',')[1];
-                    makeMarker(lat, long, row.num);
+                    makeMarker(lat, long, row);
                 }
             });
         });
@@ -102,11 +102,17 @@
                 if (infoWindow.getMap()) {
                     console.log('closed marker...' + index);
                     // todo: remove row highlight
-                    //infoWindow.close();
+                    infoWindow.close();
                     $('#pano').empty();
+                    $( ".badge" ).each( function ()
+                    {
+                        $( this ).removeClass('text-bg-primary');
+                        $( this ).addClass('text-bg-secondary');
+                    });
                 } else {
                     console.log('clicked marker...' + index);
-                    console.log(marker);
+                    let index = marker.getTitle();
+
 
                     new naver.maps.Panorama("pano", {
                         position: new naver.maps.LatLng(lat, long),
@@ -117,37 +123,41 @@
                         },
                         flightSpot: false, // 항공 아이콘 표시 여부, default: true
                     });
-                    //infoWindow.open(map, marker);
+
+                    $( ".badge" ).filter( function ()
+                    {
+                        let textIndex = $( this ).text();
+
+                        if(textIndex == index){
+                            $( this ).removeClass('text-bg-secondary');
+                            $( this ).addClass('text-bg-primary');
+                        }
+                    })
+                    infoWindow.open(map, marker);
                     // todo: highlihgt row
                 }
             }
         } 
 
-        function makeMarker(lat, long, index){
-            // var icon = {
-            //     url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sp_pins_spot_v3.png',
-            //     size: new naver.maps.Size(24, 37),
-            //     anchor: new naver.maps.Point(12, 37),
-            //     origin: new naver.maps.Point(i * 29, 0)
-            // };
-
+        function makeMarker(lat, long, row){
             let marker = new naver.maps.Marker({
                 position: new naver.maps.LatLng(lat, long),
                 map: map,
                 icon: {
                 content: [
-                    '<span class="badge rounded-pill text-bg-secondary">'+index+'</span>',
+                    '<span class="badge rounded-pill text-bg-secondary">'+row.num+'</span>',
                         ].join(''),
                 size: new naver.maps.Size(38, 58),
                 anchor: new naver.maps.Point(19, 58),
+                title: row.num
             },
             });
 
             let infoWindow = new naver.maps.InfoWindow({
-                content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"'+ index +'"</b>.</div>'
+                content: '<div style="width:150px;text-align:center;padding:10px;">'+ row.name +' | ' + row.price + '</div>'
             });
 
-            naver.maps.Event.addListener(marker, 'click', getClickHandler(marker, infoWindow, index, lat, long));
+            naver.maps.Event.addListener(marker, 'click', getClickHandler(marker, infoWindow, row.num, lat, long));
         };
 
     });
