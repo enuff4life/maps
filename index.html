@@ -31,6 +31,9 @@
                 id="table"
                 data-toggle="table"
                 data-click-to-select="true"
+                data-show-toggle="true"
+                data-detail-view-by-click="true"
+                data-detail-formatter="detailFormatter"
                 data-url="data1.json">
                 <thead>
                     <tr>
@@ -101,7 +104,9 @@
 
         // ##############
         // functions
-        function getClickHandler(marker, infoWindow) {
+        function getClickHandler(marker, infoWindow, index) {
+            console.log('clicked marker...' + index);
+            console.log(marker);
             return function(e) {
                 if (infoWindow.getMap()) {
                     infoWindow.close();
@@ -119,7 +124,7 @@
             //     origin: new naver.maps.Point(i * 29, 0)
             // };
 
-            var marker = new naver.maps.Marker({
+            let marker = new naver.maps.Marker({
                 position: new naver.maps.LatLng(lat, long),
                 map: map,
                 icon: {
@@ -131,22 +136,21 @@
             },
             });
 
-            var infoWindow = new naver.maps.InfoWindow({
+            let infoWindow = new naver.maps.InfoWindow({
                 content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"'+ index +'"</b>.</div>'
             });
 
-            naver.maps.Event.addListener(marker, 'click', getClickHandler(marker, infoWindow));
+            naver.maps.Event.addListener(marker, 'click', getClickHandler(marker, infoWindow, index));
         };
 
     });
 </script>
+
 <!-- bootstrap-table options -->
 <script>
     var $table = $('#table');
 
     function operateFormatter(value, row, index) {
-        console.log(value);
-
         if(row.link != null){
             return [
             '<a href="'+row.link+'" >',
@@ -154,9 +158,12 @@
             '</a>  '
             ].join('');
         }
-
-      
     };
+
+    function detailFormatter(index, row) {
+        console.log('clicked row...' + row.name);
+       //todo naver map highlight
+    }
 
 </script>
 </body>
