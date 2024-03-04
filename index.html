@@ -58,6 +58,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-table@1.22.3/dist/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9y9khjbeqw&submodules=panorama"></script>
 <script>
     // factory
     // 37.5222797 126.708793
@@ -80,26 +81,18 @@
 </script>
 <script>
     $(function(){
-        // read json
+        // read json and make markers
         $.getJSON( "data1.json", function( data ) {
             var items = [];
             $.each(data, function( key, row ) {
                 if(row.add != null){
                     let lat = row.add.split(',')[0];
                     let long = row.add.split(',')[1];
-
                     makeMarker(lat, long, row.num);
-                    items.push( "<li id='" + key + "'>" + row.name + " | " + lat  + ", "+ long+ "<span class='badge text-bg-secondary'>4</span>"+"</li>" );
                 }
             });
-            
-            $( "<ul/>", {
-                "class": "my-new-list",
-                html: items.join( "" )
-            }).appendTo( "body" );
         });
 
-        // set markers
         
 
         // ##############
