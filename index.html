@@ -188,7 +188,7 @@
             let textIndex = $( this ).text();
 
             if(textIndex == index){
-                $( this ).click();
+                $( this ).trigger("click");
                 // $( this ).removeClass('text-bg-secondary');
                 // $( this ).addClass('text-bg-primary');
             }
