@@ -16,19 +16,20 @@
         <div id="map" style="width:100%;height:400px;" class="mb-3"></div>
         <div class="row">
             <table class="table table-striped table-hover"
+                id="table"
                 data-toggle="table"
                 data-url="data1.json">
                 <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">이름</th>
-                      <th scope="col">가격</th>
-                      <th scope="col">거래형태</th>
-                      <th scope="col">대지 | 건평</th>
-                      <th scope="col">용도</th>
-                      <th scope="col">주소</th>
-                      <th scope="col">링크</th>
-                      <th scope="col">비고</th>
+                      <th scope="col" data-field="num">#</th>
+                      <th scope="col" data-field="name">이름</th>
+                      <th scope="col" data-field="price">가격</th>
+                      <th scope="col" data-field="cat">거래형태</th>
+                      <th scope="col" data-field="land">대지 | 건평</th>
+                      <th scope="col" data-field="usage">용도</th>
+                      <th scope="col" data-field="add">주소</th>
+                      <th scope="col" data-field="link">링크</th>
+                      <th scope="col" data-field="note">비고</th>
                     </tr>
                   </thead>
               </table>
