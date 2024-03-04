@@ -54,86 +54,85 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-table@1.22.3/dist/bootstrap-table.min.js"></script>
 <script>
-    //37.5220437,126.7081759
     // factory
     // 37.5222797 126.708793
-        var mapOptions = {
-            center: new naver.maps.LatLng(218.12037214875,99.20666753028512 ),
-            zoom: 12,
-            zoomControl: true,
-            zoomControlOptions: {
-                style: naver.maps.ZoomControlStyle.SMALL,
-                position: naver.maps.Position.TOP_RIGHT
-            }
-        };
-    
-        var map = new naver.maps.Map('map', mapOptions);
-    
-        window.navermap_authFailure = function () {
-            //alert("failed to authenticate");
+    var mapOptions = {
+        center: new naver.maps.LatLng(37.5222797, 126.708793 ),
+        zoom: 12,
+        zoomControl: true,
+        zoomControlOptions: {
+            style: naver.maps.ZoomControlStyle.SMALL,
+            position: naver.maps.Position.TOP_RIGHT
         }
-       
-    </script>
-    <script>
-        $(function(){
-            // read json
-            $.getJSON( "data1.json", function( data ) {
-                var items = [];
-                $.each(data, function( key, row ) {
-                    
+    };
 
-                    if(row.add != null){
-                        let lat = row.add.split(',')[0];
-                        let long = row.add.split(',')[1];
+    var map = new naver.maps.Map('map', mapOptions);
 
-                        makeMarker(lat, long, row.num);
-
-                        items.push( "<li id='" + key + "'>" + row.name + " | " + lat  + ", "+ long+ "<span class='badge text-bg-secondary'>4</span>"+"</li>" );
-
-                    }
-                });
-                
-                $( "<ul/>", {
-                    "class": "my-new-list",
-                    html: items.join( "" )
-                }).appendTo( "body" );
-            });
+    window.navermap_authFailure = function () {
+        //alert("failed to authenticate");
+    }
     
-            // set markers
-          
+</script>
+<script>
+    $(function(){
+        // read json
+        $.getJSON( "data1.json", function( data ) {
+            var items = [];
+            $.each(data, function( key, row ) {
+                
 
-            // ##############
-            // functions
-            function makeMarker(lat, long, index, map){
-                // var icon = {
-                //     url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sp_pins_spot_v3.png',
-                //     size: new naver.maps.Size(24, 37),
-                //     anchor: new naver.maps.Point(12, 37),
-                //     origin: new naver.maps.Point(i * 29, 0)
-                // };
+                if(row.add != null){
+                    let lat = row.add.split(',')[0];
+                    let long = row.add.split(',')[1];
 
-                var marker = new naver.maps.Marker({
-                    position: new naver.maps.LatLng(lat, long),
-                    map: map,
-                    icon: {
-                    content: [
-                        '<span class="badge text-bg-secondary">'+index+'</span>',
-                                '<div class="cs_mapbridge">',
-                                    '<div class="map_group _map_group crs">',
-                                        '<div class="map_marker _marker num1 num1_big"> ',
-                                            '<span class="ico _icon"></span>',
-                                            '<span class="shd"></span>',
-                                        '</div>',
-                                    '</div>',
-                                '</div>'
-                            ].join(''),
-                    size: new naver.maps.Size(38, 58),
-                    anchor: new naver.maps.Point(19, 58),
-                },
-                });
-            };
+                    makeMarker(lat, long, row.num);
 
+                    items.push( "<li id='" + key + "'>" + row.name + " | " + lat  + ", "+ long+ "<span class='badge text-bg-secondary'>4</span>"+"</li>" );
+
+                }
+            });
+            
+            $( "<ul/>", {
+                "class": "my-new-list",
+                html: items.join( "" )
+            }).appendTo( "body" );
         });
-    </script>
+
+        // set markers
+        
+
+        // ##############
+        // functions
+        function makeMarker(lat, long, index, map){
+            // var icon = {
+            //     url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sp_pins_spot_v3.png',
+            //     size: new naver.maps.Size(24, 37),
+            //     anchor: new naver.maps.Point(12, 37),
+            //     origin: new naver.maps.Point(i * 29, 0)
+            // };
+
+            var marker = new naver.maps.Marker({
+                position: new naver.maps.LatLng(lat, long),
+                map: map,
+                icon: {
+                content: [
+                    '<span class="badge text-bg-secondary">'+index+'</span>',
+                            '<div class="cs_mapbridge">',
+                                '<div class="map_group _map_group crs">',
+                                    '<div class="map_marker _marker num1 num1_big"> ',
+                                        '<span class="ico _icon"></span>',
+                                        '<span class="shd"></span>',
+                                    '</div>',
+                                '</div>',
+                            '</div>'
+                        ].join(''),
+                size: new naver.maps.Size(38, 58),
+                anchor: new naver.maps.Point(19, 58),
+            },
+            });
+        };
+
+    });
+</script>
 </body>
 </html>
