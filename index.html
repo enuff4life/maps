@@ -114,7 +114,7 @@
                     });
                 } else {
                     console.log('clicked marker...' + index);
-                    let index = marker.getTitle();
+                    let title = marker.getTitle();
 
                     if(lat != null && long != null){
                         new naver.maps.Panorama("pano", {
@@ -132,7 +132,7 @@
                     {
                         let textIndex = $( this ).text();
 
-                        if(textIndex == index){
+                        if(textIndex == title){
                             $( this ).removeClass('text-bg-secondary');
                             $( this ).addClass('text-bg-primary');
                         }
