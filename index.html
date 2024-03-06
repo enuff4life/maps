@@ -13,15 +13,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>언약교회 </h1>
         <div>https://yellow-sand-0f7b03110.5.azurestaticapps.net/</div>
-        <div>filters</div>
 
         <div class="row mb-3">
-            <div class="col">
+            <div class="col-md">
                 <div id="map" style="width:100%; height:400px;" ></div>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <div id="pano" style="width:100%; height:400px;"></div>
             </div>
         </div>
@@ -31,23 +29,27 @@
                 id="table"
                 data-toggle="table"
                 data-click-to-select="true"
+                data-single-select="true"
                 data-show-toggle="true"
                 data-detail-view-by-click="true"
                 data-detail-formatter="detailFormatter"
+                data-filter-control="true"
+                data-show-search-clear-button="true"
                 data-url="data1.json">
                 <thead>
                     <tr>
-                      <th scope="col" data-field="num">#</th>
-                      <th scope="col" data-field="name" >이름</th>
-                      <th scope="col" data-field="price">가격</th>
-                      <th scope="col" data-field="cat">건물</th>
-                      <th scope="col" data-field="floors">층</th>
-                      <th scope="col" data-field="area1">대지</th>
-                      <th scope="col" data-field="area2">건평</th>
-                      <th scope="col" data-field="usage">용도</th>
-                      <th scope="col" data-field="parking">주차</th>
-                      <th scope="col" data-formatter="operateFormatter">링크</th>
-                      <th scope="col" data-field="note">비고</th>
+                      <th data-field="state" data-checkbox="true"></th>
+                      <th data-field="num"      data-sortable="true">#</th>
+                      <th data-field="name"     data-sortable="true">이름</th>
+                      <th data-field="price"    data-sortable="true">가격</th>
+                      <th data-field="cat"      data-sortable="true"    data-filter-control="select">건물</th>
+                      <th data-field="floors"   data-sortable="true">층</th>
+                      <th data-field="area1"    data-sortable="true">대지</th>
+                      <th data-field="area2"    data-sortable="true">건평</th>
+                      <th data-field="usage"    data-sortable="true">용도</th>
+                      <th data-field="parking"  data-sortable="true">주차</th>
+                      <th data-formatter="operateFormatter"     data-sortable="true">링크</th>
+                      <th data-field="note"     data-sortable="true">비고</th>
                     </tr>
                   </thead>
               </table>
@@ -59,6 +61,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-table@1.22.3/dist/bootstrap-table.min.js"></script>
 <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9y9khjbeqw&submodules=panorama"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.3/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
 <script>
     // factory
     // 37.5222797 126.708793
@@ -187,9 +190,12 @@
         {
             let textIndex = $(this).text();
             if(textIndex == (index+1)){
-                $(this).trigger("click"); //todo: not functioning...
-                // $( this ).removeClass('text-bg-secondary');
-                // $( this ).addClass('text-bg-primary');
+                if($(this).hasClass('text-bg-primary')){
+                    $(this).removeClass('text-bg-primary');
+                    $(this).addClass('text-bg-secondary');
+                }
+                
+                $(this).trigger("click");
             }
         });
     }
